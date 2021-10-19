@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+
+  <h2 style="">Ecommerce Process</h2>
+
+  <div class="container">
+    <br>
+    {% if payment_st %}
+    <form  action="{% url 'App_Payment:payment_status' %}" method="POST">
+      {% csrf_token %}
+      <p>name = {{name}}</p>
+      <p>keyid = {{ keyid }}</p>
+      <p>order_id = {{order_id }}</p>
+      <p>payment_amount = {{ order_amount }}</p>
+
+
+
+
+      <script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key= "{{ keyid }}"
+        data-amount= "{{order_amount}} "
+        data-currency="BDT"
+        data-order_id="{{order_id }}"
+        data-buttontext="Pay with Razorpay"
+        data-name="Ecommerce Website"
+        data-description="The Ecommerce website is a useful website"
+        data-image="https://example.com/your_logo.jpg"
+        data-prefill.name= "{{name}}"
+        data-prefill.email="{{email}}"
+        data-theme.color="#F37254"
+    ></script>
+
+    <input type="hidden" custom="Hidden Element" name="hidden" value="">
+
+
+
+
+
+    </form>
+    <form class="" action="{% url 'App_Payment:orders' %}" method="POST">
+      {% csrf_token %}
+      <p>name = {{name}}</p>
+      <input id="name" type="text" name="name" value="{{ name }}">
+
+
+
+      <p>keyid = {{ keyid }}</p>
+        <input id="keyid" type="text" name="keyid" value="{{ keyid }}">
+      <p>order_id = {{order_id }}</p>
+      <input id="orderid" type="text" name="orderid" value="{{ order_id }}">
+
+      <p>payment_amount = {{ order_amount }}</p>
+      <input id="order_amount" type="text" name="amount" value="{{ order_amount }}">
+      <input type="submit" name="" value="">
+
+
+    </form>
+
+
+
+
+    {% endif %}
+
+  </div>
+
+
+{% endblock %}

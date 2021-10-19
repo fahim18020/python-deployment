@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title_block %} Ecommerce {% endblock %}</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+ <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <!-- Popper JS -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <!-- Latest compiled JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link  href="https://fontawesome.com/icons/thumbs-up?style=regular">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  {% block css_block %}
+  <style media="screen">
+       .card {
+         height : 350px;
+
+       }
+       .card-product:after {
+         content :"";
+         display: table;
+         clear: both;
+         visibility: hidden;
+       }
+       .card-product .price_new,  .card-product .price {
+         margin-right: 5px;
+
+       }
+       .card-product .price-old {
+         color : #999;
+       }
+       .card-product .img-wrap {
+         border-radius : 3px 3px 0 0;
+         overflow: hidden;
+         position: relative;
+
+       }
+       .card-product .img-wrap img{
+         max-height: 100%;
+         max-width: 100%;
+         object-fit: cover;
+
+       }
+       .card-product .info-wrap {
+         overflow: hidden;
+         padding: 15px;
+         border-top: 1px solid #eee;
+       }
+       .card-product .action-wrap {
+         padding-top:4px;
+         margin-top:4px;
+       }
+       .card-product .bottom-wrap {
+         padding :15px;
+         border-top: 1px solid #eee;
+
+       }
+       .card-product .title {
+         margin-top: 0px;
+
+       }
+     </style>
+
+
+  {% endblock %}
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="container" style="padding-top:15px">
+      <div class="messages container mt-2">
+        {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{message.tags}} {% endif %}" role="alert">
+          {{message}}
+          <button type="button" class="close" data-dismiss="alert" area-label="Close" name="button"><span area-hidden="true">&times;</span></button>
+        </div>
+
+
+
+        {% endfor %}
+
+
+
+        {% endif %}
+
+      </div>
+
+      {% block body_block %} {% endblock %}
+    </div>
+
+  </body>
+</html>
